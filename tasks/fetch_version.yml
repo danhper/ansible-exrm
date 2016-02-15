@@ -8,6 +8,7 @@
   environment:
     MIX_ENV: "{{ mix_env }}"
   delegate_to: "{{ groups[build_host][0] }}"
+  remote_user: "{{ build_user }}"
   changed_when: false
 
 - set_fact: app_version="{{ app_version_result.stdout }}"

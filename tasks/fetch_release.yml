@@ -6,6 +6,7 @@
     dest: "{{ local_tmp_dir }}/{{ app_name }}-{{ app_version }}.tar.gz"
     flat: yes
   delegate_to: "{{ groups[build_host][0] }}"
+  remote_user: "{{ build_user }}"
 
 - name: Upload release
   copy:

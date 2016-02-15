@@ -12,4 +12,4 @@
 - name: Upgrade app
   command: "{{ release_path }}/bin/{{ app_name }} upgrade {{ app_version }}"
   become: true
-  become_user: "{{ username }}"
+  become_user: "{{ user }}"

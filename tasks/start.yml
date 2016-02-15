@@ -20,12 +20,12 @@
 - name: Unarchive release
   unarchive: src={{ tmp_dir }}/{{ app_name }}-{{ app_version }}.tar.gz dest={{ release_path }}
   become: true
-  become_user: "{{ username }}"
+  become_user: "{{ user }}"
 
 - name: Check if app is started
   command: "{{ release_path }}/bin/{{ app_name }} ping"
   become: true
-  become_user: "{{ username }}"
+  become_user: "{{ user }}"
   ignore_errors: true
   changed_when: false
   register: app_started
@@ -33,5 +33,5 @@
 - name: Start app
   command: "{{ release_path }}/bin/{{ app_name }} start"
   become: true
-  become_user: "{{ username }}"
+  become_user: "{{ user }}"
   when: app_started | failed

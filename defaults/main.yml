@@ -10,5 +10,7 @@ build_host: build_server
 tmp_dir: /tmp
 local_tmp_dir: /tmp
 
-username: root
+build_user: root
+
+user: root
 release_path: ~/releases

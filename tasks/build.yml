@@ -2,27 +2,32 @@
 
 - name: Ensure git is installed
   apt: name=git
+  remote_user: "{{ build_user }}"
   delegate_to: "{{ groups[build_host][0] }}"
 
 - name: Fetch the project
   git: repo={{ repo_url }} accept_hostkey=yes dest={{ project_path }} force={{ force_clone }} version={{ git_ref }}
   register: gitclone
+  remote_user: "{{ build_user }}"
   delegate_to: "{{ groups[build_host][0] }}"
 
 - name: Install dependencies
   command: mix deps.get chdir={{ project_path }}
   environment:
     MIX_ENV: "{{ mix_env }}"
+  remote_user: "{{ build_user }}"
   delegate_to: "{{ groups[build_host][0] }}"
 
 - name: Build project
   command: mix compile chdir={{ project_path }}
   environment:
     MIX_ENV: "{{ mix_env }}"
+  remote_user: "{{ build_user }}"
   delegate_to: "{{ groups[build_host][0] }}"
 
 - name: Build release
   shell: mix release chdir="{{ project_path }}"
   environment:
     MIX_ENV: "{{ mix_env }}"
+  remote_user: "{{ build_user }}"
   delegate_to: "{{ groups[build_host][0] }}"
