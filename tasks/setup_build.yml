@@ -1,0 +1,9 @@
+---
+
+- name: Install hex
+  command: mix local.hex --force
+  delegate_to: "{{ groups[build_host][0] }}"
+
+- name: Install rebar
+  command: mix local.rebar
+  delegate_to: "{{ groups[build_host][0] }}"

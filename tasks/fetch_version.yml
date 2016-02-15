@@ -1,0 +1,13 @@
+---
+
+- name: Fetch project version
+  shell: mix run --no-start -e 'IO.puts "VERSION=" <> Mix.Project.config[:version]' | sed -n 's/VERSION=//p'
+  register: app_version_result
+  args:
+    chdir: "{{ project_path }}"
+  environment:
+    MIX_ENV: "{{ mix_env }}"
+  delegate_to: "{{ groups[build_host][0] }}"
+  changed_when: false
+
+- set_fact: app_version="{{ app_version_result.stdout }}"

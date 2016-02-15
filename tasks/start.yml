@@ -1,0 +1,37 @@
+---
+
+- name: Ensure rsync installed
+  apt: name=rsync
+
+- name: Ensure rsync installed on build server
+  apt: name=rsync
+  delegate_to: "{{ item }}"
+  with_items: "{{groups[build_host]}}"
+
+- name: Ensure release path exists
+  file: path={{ release_path }} state=directory
+
+- include: fetch_version.yml
+
+- include: fetch_release.yml
+  vars:
+    upload_path: "{{ tmp_dir }}/{{ app_name }}-{{ app_version }}.tar.gz"
+
+- name: Unarchive release
+  unarchive: src={{ tmp_dir }}/{{ app_name }}-{{ app_version }}.tar.gz dest={{ release_path }}
+  become: true
+  become_user: "{{ username }}"
+
+- name: Check if app is started
+  command: "{{ release_path }}/bin/{{ app_name }} ping"
+  become: true
+  become_user: "{{ username }}"
+  ignore_errors: true
+  changed_when: false
+  register: app_started
+
+- name: Start app
+  command: "{{ release_path }}/bin/{{ app_name }} start"
+  become: true
+  become_user: "{{ username }}"
+  when: app_started | failed

@@ -1,0 +1,20 @@
+galaxy_info:
+  author: "Daniel Perez"
+  description: exrm based release
+  company: "Claude Tech"
+  license: MIT
+
+  min_ansible_version: 1.2
+  platforms:
+    - name: Ubuntu
+      versions:
+        - all
+    - name: Debian
+      versions:
+        - all
+  categories:
+    - programming
+
+  galaxy_tags: []
+
+dependencies: []

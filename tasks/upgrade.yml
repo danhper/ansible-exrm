@@ -1,0 +1,15 @@
+---
+
+- include: fetch_version.yml
+
+- name: Ensure release dir exists
+  file: path={{ release_path }}/releases/{{ app_version }}
+
+- include: fetch_release.yml
+  vars:
+    upload_path: "{{ release_path }}/releases/{{ app_version }}/{{ app_name }}.tar.gz"
+
+- name: Upgrade app
+  command: "{{ release_path }}/bin/{{ app_name }} upgrade {{ app_version }}"
+  become: true
+  become_user: "{{ username }}"

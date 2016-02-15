@@ -1,0 +1,14 @@
+---
+
+git_ref: master
+action: all
+force_clone: false
+projects_dir: /tmp/projects
+project_path: "{{ projects_dir }}/{{ app_name }}"
+mix_env: prod
+build_host: build_server
+tmp_dir: /tmp
+local_tmp_dir: /tmp
+
+username: root
+release_path: ~/releases

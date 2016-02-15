@@ -1,0 +1,11 @@
+---
+- hosts: build_server
+  remote_user: root
+  roles:
+    - { role: erlang, erlang_extra_packages: [erlang-dev, elixir] }
+
+- hosts: server
+  remote_user: root
+  roles:
+    - { role: erlang }
+    - { role: exrm }
