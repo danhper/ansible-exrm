@@ -20,14 +20,12 @@
 
 - name: Build project
   command: mix compile chdir={{ project_path }}
-  environment:
-    MIX_ENV: "{{ mix_env }}"
+  environment: "{{ build_env }}"
   remote_user: "{{ build_user }}"
   delegate_to: "{{ groups[build_host][0] }}"
 
 - name: Build release
   shell: mix release chdir="{{ project_path }}"
-  environment:
-    MIX_ENV: "{{ mix_env }}"
+  environment: "{{ build_env }}"
   remote_user: "{{ build_user }}"
   delegate_to: "{{ groups[build_host][0] }}"

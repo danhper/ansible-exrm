@@ -14,3 +14,6 @@ build_user: root
 
 user: root
 release_path: ~/releases
+
+build_env:
+  MIX_ENV: "{{ mix_env }}"
