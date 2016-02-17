@@ -18,6 +18,13 @@
   remote_user: "{{ build_user }}"
   delegate_to: "{{ groups[build_host][0] }}"
 
+- name: Clean project
+  command: mix clean chdir={{ project_path }}
+  environment:
+    MIX_ENV: "{{ mix_env }}"
+  remote_user: "{{ build_user }}"
+  delegate_to: "{{ groups[build_host][0] }}"
+
 - name: Build project
   command: mix compile chdir={{ project_path }}
   environment: "{{ build_env }}"
