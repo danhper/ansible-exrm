@@ -4,6 +4,8 @@
 
 - name: Ensure release dir exists
   file: path={{ release_path }}/releases/{{ app_version }}
+  become: true
+  become_user: "{{ user }}"
 
 - include: fetch_release.yml
   vars:

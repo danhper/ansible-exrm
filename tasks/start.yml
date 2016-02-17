@@ -10,6 +10,8 @@
 
 - name: Ensure release path exists
   file: path={{ release_path }} state=directory
+  become: true
+  become_user: "{{ user }}"
 
 - include: fetch_version.yml
 

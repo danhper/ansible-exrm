@@ -12,3 +12,4 @@
   copy:
     src: "{{ local_tmp_dir }}/{{ app_name }}-{{ app_version }}.tar.gz"
     dest: "{{ upload_path }}"
+    owner: "{{ user }}"
