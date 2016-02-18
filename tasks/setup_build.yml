@@ -2,10 +2,12 @@
 
 - name: Install hex
   command: mix local.hex --force
-  delegate_to: "{{ groups[build_host][0] }}"
+  delegate_to: "{{ build_server }}"
   remote_user: "{{ build_user }}"
+  become: false
 
 - name: Install rebar
   command: mix local.rebar
-  delegate_to: "{{ groups[build_host][0] }}"
+  delegate_to: "{{ build_server }}"
   remote_user: "{{ build_user }}"
+  become: false

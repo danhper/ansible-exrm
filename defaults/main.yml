@@ -6,7 +6,7 @@ force_clone: false
 projects_dir: /tmp/projects
 project_path: "{{ projects_dir }}/{{ app_name }}"
 mix_env: prod
-build_host: build_server
+build_server: localhost
 tmp_dir: /tmp
 local_tmp_dir: /tmp
 

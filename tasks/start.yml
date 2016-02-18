@@ -5,8 +5,7 @@
 
 - name: Ensure rsync installed on build server
   apt: name=rsync
-  delegate_to: "{{ item }}"
-  with_items: "{{groups[build_host]}}"
+  delegate_to: "{{ build_server }}"
 
 - name: Ensure release path exists
   file: path={{ release_path }} state=directory
