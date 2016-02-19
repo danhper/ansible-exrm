@@ -15,5 +15,9 @@ build_user: root
 user: root
 release_path: ~/releases
 
+in_umbrella: false
+
+app_path: "{{ project_path + "/apps/" + app_name if in_umbrella else project_path }}"
+
 build_env:
   MIX_ENV: "{{ mix_env }}"

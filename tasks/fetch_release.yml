@@ -2,7 +2,7 @@
 
 - name: Fetch release
   fetch:
-    src: "{{ project_path }}/rel/{{ app_name }}/releases/{{ app_version }}/{{ app_name }}.tar.gz"
+    src: "{{ app_path }}/rel/{{ app_name }}/releases/{{ app_version }}/{{ app_name }}.tar.gz"
     dest: "{{ local_tmp_dir }}/{{ app_name }}-{{ app_version }}.tar.gz"
     flat: yes
   delegate_to: "{{ build_server }}"
