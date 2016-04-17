@@ -5,8 +5,7 @@
   register: app_version_result
   args:
     chdir: "{{ app_path }}"
-  environment:
-    MIX_ENV: "{{ mix_env }}"
+  environment: "{{ build_env }}"
   delegate_to: "{{ build_server }}"
   become: false
   remote_user: "{{ build_user }}"
