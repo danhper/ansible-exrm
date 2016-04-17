@@ -15,16 +15,14 @@
 
 - name: Install dependencies
   command: mix deps.get chdir={{ project_path }}
-  environment:
-    MIX_ENV: "{{ mix_env }}"
+  environment: "{{ build_env }}"
   remote_user: "{{ build_user }}"
   become: false
   delegate_to: "{{ build_server }}"
 
 - name: Clean project
   command: mix clean chdir={{ project_path }}
-  environment:
-    MIX_ENV: "{{ mix_env }}"
+  environment: "{{ build_env }}"
   remote_user: "{{ build_user }}"
   become: false
   delegate_to: "{{ build_server }}"
