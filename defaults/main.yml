@@ -9,6 +9,7 @@ mix_env: prod
 build_server: localhost
 tmp_dir: /tmp
 local_tmp_dir: /tmp
+mix_compile_task: compile
 
 build_user: root
 

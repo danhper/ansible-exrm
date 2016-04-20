@@ -28,7 +28,7 @@
   delegate_to: "{{ build_server }}"
 
 - name: Build project
-  command: mix compile chdir={{ project_path }}
+  command: mix {{ mix_compile_task }} chdir={{ project_path }}
   environment: "{{ build_env }}"
   remote_user: "{{ build_user }}"
   become: false
