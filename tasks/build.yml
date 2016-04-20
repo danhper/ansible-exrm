@@ -14,7 +14,7 @@
   delegate_to: "{{ build_server }}"
 
 - name: Install dependencies
-  command: mix deps.get chdir={{ project_path }}
+  command: mix {{ mix_install_task }} chdir={{ project_path }}
   environment: "{{ build_env }}"
   remote_user: "{{ build_user }}"
   become: false
