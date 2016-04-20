@@ -14,7 +14,7 @@
   delegate_to: "{{ build_server }}"
 
 - name: Install dependencies
-  command: mix {{ mix_install_task }} chdir={{ project_path }}
+  command: mix {{ mix_instll_task }} chdir={{ project_path }}
   environment: "{{ build_env }}"
   remote_user: "{{ build_user }}"
   become: false
@@ -40,3 +40,11 @@
   remote_user: "{{ build_user }}"
   become: false
   delegate_to: "{{ build_server }}"
+
+- name: Run migrations
+  shell: mix ecto.migrate
+  environment: "{{ build_env }}"
+  remote_user: "{{ build_user }}"
+  become: false
+  delegate_to: "{{ build_server }}"
+  when: "{{ run_ecto_migrations }}"

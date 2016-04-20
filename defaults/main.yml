@@ -11,6 +11,7 @@ tmp_dir: /tmp
 local_tmp_dir: /tmp
 mix_compile_task: compile
 mix_install_task: deps.get
+run_ecto_migrations: false
 
 build_user: root
 
