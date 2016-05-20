@@ -42,7 +42,7 @@
   delegate_to: "{{ build_server }}"
 
 - name: Run migrations
-  shell: mix ecto.migrate chdir="{{ project_path }}"
+  shell: mix {{ mix_migrate_task }} chdir="{{ project_path }}"
   environment: "{{ build_env }}"
   remote_user: "{{ build_user }}"
   become: false
