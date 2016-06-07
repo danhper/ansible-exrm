@@ -17,9 +17,7 @@
     upload_path: "{{ tmp_dir }}/{{ app_name }}-{{ app_version }}.tar.gz"
 
 - name: Unarchive release
-  unarchive: src={{ tmp_dir }}/{{ app_name }}-{{ app_version }}.tar.gz dest={{ release_path }}
-  become: true
-  become_user: "{{ user }}"
+  unarchive: src={{ tmp_dir }}/{{ app_name }}-{{ app_version }}.tar.gz dest={{ release_path }} owner={{ user }} group={{ group }}
 
 - name: Check if app is started
   command: "{{ release_path }}/bin/{{ app_name }} ping"
