@@ -13,5 +13,5 @@
   copy:
     src: "{{ local_tmp_dir }}/{{ app_name }}-{{ app_version }}.tar.gz"
     dest: "{{ upload_path }}"
-  become: true
-  become_user: "{{ user }}"
+    owner: "{{ user }}"
+    group: "{{ group }}"
