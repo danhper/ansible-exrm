@@ -17,6 +17,7 @@ run_ecto_migrations: false
 build_user: root
 
 user: root
+group: "{{ user }}"
 release_path: ~/releases
 
 in_umbrella: false

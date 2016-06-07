@@ -8,9 +8,7 @@
   delegate_to: "{{ build_server }}"
 
 - name: Ensure release path exists
-  file: path={{ release_path }} state=directory
-  become: true
-  become_user: "{{ user }}"
+  file: path={{ release_path }} state=directory owner={{ user }} group={{ group }}
 
 - include: fetch_version.yml
 
