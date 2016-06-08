@@ -18,7 +18,7 @@ build_user: root
 
 user: root
 group: "{{ user }}"
-release_path: ~/releases
+release_path: /home/{{ user }}/releases
 
 in_umbrella: false
 
