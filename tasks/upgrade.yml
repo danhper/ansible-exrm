@@ -3,7 +3,7 @@
 - include: fetch_version.yml
 
 - name: Ensure release dir exists
-  file: path={{ release_path }}/releases/{{ app_version }} owner={{ user }} group={{ group }}
+  file: path={{ release_path }}/releases/{{ app_version }} owner={{ user }} group={{ group }} state=directory
 
 - include: fetch_release.yml
   vars:
