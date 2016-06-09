@@ -1,13 +1,21 @@
 ---
 
+- name: Check if app is started
+  command: "{{ release_path }}/bin/{{ app_name }} ping"
+  become: true
+  become_user: "{{ user }}"
+  ignore_errors: true
+  changed_when: false
+  register: app_started
+
 - when: action == "all" or action == "setup_build"
   include: setup_build.yml
 
 - when: action == "all" or action == "build"
   include: build.yml
 
-- when: action == "all" or action == "start"
+- when: (action == "all" or action == "start") and app_started | failed
   include: start.yml
 
-- when: action == "all" or action == "upgrade"
+- when: (action == "all" or action == "upgrade") and app_started | succeeded
   include: upgrade.yml

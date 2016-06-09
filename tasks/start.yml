@@ -19,16 +19,10 @@
 - name: Unarchive release
   unarchive: src={{ tmp_dir }}/{{ app_name }}-{{ app_version }}.tar.gz dest={{ release_path }} owner={{ user }} group={{ group }}
 
-- name: Check if app is started
-  command: "{{ release_path }}/bin/{{ app_name }} ping"
-  become: true
-  become_user: "{{ user }}"
-  ignore_errors: true
-  changed_when: false
-  register: app_started
+- name: Ensure correct user
+  file: path={{ release_path }} owner={{ user }} group={{ group }} recurse=true
 
 - name: Start app
   command: "{{ release_path }}/bin/{{ app_name }} start"
   become: true
   become_user: "{{ user }}"
-  when: app_started | failed
